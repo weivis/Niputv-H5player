@@ -155,3 +155,21 @@ $('video')[0].volume = 1;
         $('#play-filling').css('width', percentage + '%');
         video.currentTime = maxduration * percentage / 100;
     };
+
+
+    video.addEventListener("loadedmetadata", function () {
+        var duration = video.duration;
+        var showTime = formatTime(duration);
+        play_total_length.innerHTML = showTime
+    });
+
+    video.addEventListener('timeupdate', function () {
+        var currentTime = video.currentTime; //Get currenttime
+        var showTime = formatTime(currentTime);
+        var maxduration = video.duration; //Get myVideo duration
+        var percentage = 100 * currentTime / maxduration; //in %
+        player_filling.style.cssText = "width:" + percentage + "%";
+        play_nowtime.innerHTML = showTime
+
+    });
+</script>
