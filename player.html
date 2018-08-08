@@ -121,3 +121,37 @@ $('video')[0].volume = 1;
          play()
      })    
     
+    var timeDrag = false;
+    $('#play-filling_all').mousedown(function (e) {
+        timeDrag = true;
+        updatebar(e.pageX);
+    });
+    $(document).mouseup(function (e) {
+        if (timeDrag) {
+            timeDrag = false;
+            updatebar(e.pageX);
+        }
+    });
+    $(document).mousemove(function (e) {
+        if (timeDrag) {
+            updatebar(e.pageX);
+        }
+    });
+
+    var updatebar = function (x) {
+        var progress = $('#play-filling_all');
+        var maxduration = video.duration;
+        var position = x - progress.offset().left;
+        var percentage = 100 * position / progress.width();
+
+        if (percentage > 100) {
+            percentage = 100;
+        }
+        if (percentage < 0) {
+            percentage = 0;
+        }
+
+        //Update progress bar and video currenttime
+        $('#play-filling').css('width', percentage + '%');
+        video.currentTime = maxduration * percentage / 100;
+    };
