@@ -24,3 +24,32 @@
             <div class="niputv-player-control video_sharpness">1080P</div>
         </div>
     </div>
+    /**播放器主体**/
+    var video = document.getElementById("video");
+
+    /**现在播放时间-视频总时长**/
+    var play_nowtime = document.getElementById("play-nowtime");
+    var play_total_length = document.getElementById("play-total_length");
+
+    /**视频播放进度条**/
+    var player_filling_all = document.getElementById("play-filling_all");
+    var player_filling = document.getElementById("play-filling");
+
+    /**播放控件**/
+    var video_playbutt = document.getElementById("control-play");
+
+
+    function play(){
+        this.controls = true;
+        if (video.paused) {
+            video.play()
+            video_playbutt.style.cssText = "background: url(img/niputv-player-ico.png) -100px -0px no-repeat";
+        } else {
+            video.pause()
+            video_playbutt.style.cssText = "background: url(img/niputv-player-ico.png) 0px 0px no-repeat";
+        }
+    };
+     $("#control-play").click(function() {
+         play()
+     })    
+    
