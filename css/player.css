@@ -1,0 +1,49 @@
+/**播放器主体**/
+.niputv-player{max-width: 1280px;max-height: 720px;width: 100%;height: 100%;position: relative}
+
+/**播放器video标签**/
+.niputv-player-video video{width: 100%;height: 100%;z-index: 10}
+
+/**播放器控件主体**/
+.niputv-player-control.main{width: calc(100% - 26px);padding-left: 13px;padding-right: 13px;padding-top: 97px; height: 52px; position: absolute;bottom: 0px;z-index: 90;color: #fff;left: 0;right: 0;margin: auto;background-image: url(../img/control-shon.png);}
+
+.niputv-player-control.bottom{height: 50px;position: absolute;bottom: 0px;left: 0;right: 0;width: calc(100% - 26px);margin: auto}
+
+/**播放器时间轴主体**/
+.niputv-player-control-timeline.main{width: 100%;height: 2px;border-radius: 20px;background-color: #ffffff60;}
+.niputv-player-control-timeline.filling{float: left;height: 100%;width: 0%;background-color: #ff4280;border-radius: 20px;}
+.niputv-player-control-timeline.main:hover{height: 6px;}
+
+/**控件**/
+.niputv-player-control.play{width: 50px;height: 50px;float: left;}
+.niputv-player-control.time{height: 100%;float: left;margin-left: 0px;float: left;line-height: 50px;font-size: 12.5px;}
+.niputv-player-control.full_screen{width: 50px;height: 40px;float: right;margin-top: 4px;}
+.niputv-player-control.video_sharpness{width: 70px;height: 50px;float: right;text-align: center;line-height: 50px;font-size: 12.5px;}
+
+.niputv-player-volume-poup{width: 50px;height: 120px;background-color: #00000050;position: absolute;right: 50px;bottom: 52px;display: none}
+.niputv-player-volume-poup:hover{display: block !important}
+
+.niputv-player-volume-poup_control{width: 6px;height: 90px;background-color: #ffffff60;margin: 0 auto;margin-top: 15px;border-radius: 20px;position: relative;overflow: hidden}
+
+.niputv-player-volume-poup_controlfilling{position: absolute;bottom: 0;left: 0;right: 0;width: 100%;height: 100%; background-color: #ff4280;border-radius: 20px;}
+/**.niputv-player-control.play:hover{background-position: -50px 0px !important}**/
+
+#volume_win .volumewrap{
+	background: #a2a7aa;
+	width: 8px;
+	height: 80px;
+	position: absolute;
+    top: 0;
+	border-radius: 4px;
+}
+
+#volume_win .progress{
+	background: none;
+}
+#volume_win .progress-bar{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	border-radius: 4px;
+	background:#d9534f;
+}
