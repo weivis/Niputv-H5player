@@ -24,6 +24,9 @@
             <div class="niputv-player-control video_sharpness">1080P</div>
         </div>
     </div>
+    
+</div>
+<script type="text/javascript">
     /**播放器主体**/
     var video = document.getElementById("video");
 
@@ -101,6 +104,19 @@ $('video')[0].volume = 1;
 		e.stopPropagation();
 		e.preventDefault();
 	}   
+
+	var timer=null;
+	$('#control-volume_butt').on('mouseover',function(){
+		clearInterval(timer);
+			$('#control-volume').css('display','block');
+		});
+	$('#control-volume_butt').on('mouseout',function(){
+		clearInterval(timer);
+		timer=setTimeout(function (){
+		$('#control-volume').css('display','none');
+	}, 200);		
+	});
+    
      $("#control-play").click(function() {
          play()
      })    
