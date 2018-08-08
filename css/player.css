@@ -18,7 +18,7 @@
 .niputv-player-control.play{width: 50px;height: 50px;float: left;}
 .niputv-player-control.time{height: 100%;float: left;margin-left: 0px;float: left;line-height: 50px;font-size: 12.5px;}
 .niputv-player-control.full_screen{width: 50px;height: 40px;float: right;margin-top: 4px;}
-.niputv-player-control.video_sharpness{width: 70px;height: 50px;float: right;text-align: center;line-height: 50px;font-size: 12.5px;}
+.niputv-player-control.video_sharpness{width: 70px;height: 50px;float: right;text-align: center;line-height: 50px;font-size: 12.5px;cursor: pointer}
 
 .niputv-player-volume-poup{width: 50px;height: 120px;background-color: #00000050;position: absolute;right: 50px;bottom: 52px;display: none}
 .niputv-player-volume-poup:hover{display: block !important}
@@ -28,22 +28,6 @@
 .niputv-player-volume-poup_controlfilling{position: absolute;bottom: 0;left: 0;right: 0;width: 100%;height: 100%; background-color: #ff4280;border-radius: 20px;}
 /**.niputv-player-control.play:hover{background-position: -50px 0px !important}**/
 
-#volume_win .volumewrap{
-	background: #a2a7aa;
-	width: 8px;
-	height: 80px;
-	position: absolute;
-    top: 0;
-	border-radius: 4px;
-}
-
-#volume_win .progress{
-	background: none;
-}
-#volume_win .progress-bar{
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	border-radius: 4px;
-	background:#d9534f;
-}
+.niputv-player-sharpness-poup.main{width: 70px;position: absolute;bottom: 52px;right: 100px;}
+.niputv-player-sharpness-poup.a{width: 100%;height: 35px;background-color: #00000060;font-size: 12px;line-height: 35px;text-align: center}
+.niputv-player-sharpness-poup.a:hover{background-color: #ff4280}

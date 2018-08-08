@@ -2,7 +2,9 @@
 <script type="text/javascript" src="https://mahdns-cdn-1251754029.cosgz.myqcloud.com/v2.1.4/jquery.min.js"></script>
 <div class="niputv-player" id="niputv-player">
 
-    <div class="niputv-player-video"><video src="video1.mp4" id="video"></video></div>
+    <div class="niputv-player-video">
+        <video src="video1.mp4" id="video"></video>
+    </div>
     <div class="niputv-player-control main" id="niputv-player-control">
         <div class="niputv-player-control-timeline main" id="play-filling_all">
             <div class="niputv-player-control-timeline filling" id="play-filling"></div>
@@ -13,7 +15,14 @@
                     <div class="niputv-player-volume-poup_controlfilling" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
-            
+            <div class="niputv-player-sharpness-poup main" id="video_sharpness_list" style="display: none">
+                <div class="niputv-player-sharpness-poup a">360P</div>
+                <div class="niputv-player-sharpness-poup a">480P</div>
+                <div class="niputv-player-sharpness-poup a">720P</div>
+                <div class="niputv-player-sharpness-poup a">1080P</div>
+                <div class="niputv-player-sharpness-poup a">2K</div>
+                <div class="niputv-player-sharpness-poup a">4K</div>
+            </div>
             <div class="niputv-player-control play" style="background: url(img/niputv-player-ico.png) 0px 0px no-repeat" id="control-play"></div>
             <div class="niputv-player-control time">
                 <span id="play-nowtime">00:00</span> /
@@ -21,10 +30,10 @@
             </div>
             <div class="niputv-player-control full_screen" style="background: url(img/niputv-player-ico.png) 0px -55px no-repeat"></div>
             <div class="niputv-player-control full_screen" style="background: url(img/niputv-player-ico.png) 0px -105px no-repeat" id="control-volume_butt"></div>
-            <div class="niputv-player-control video_sharpness">1080P</div>
+            <div class="niputv-player-control video_sharpness" id="control-video_sharpness" onselectstart="return false">1080P</div>
         </div>
     </div>
-    
+
 </div>
 <script type="text/javascript">
     /**播放器主体**/
@@ -50,7 +59,7 @@
         return showTime;
     };
 
-    function play(){
+    function play() {
         this.controls = true;
         if (video.paused) {
             video.play()
@@ -62,65 +71,77 @@
     };
 
 
-    $('#control-volume_butt').on('click', function() {
+    $('#control-volume_butt').on('click', function () {
         if (video.muted == true) {
             video.muted = false;
-            $('#control-volume_butt').attr("style","background: url(img/niputv-player-ico.png) 0px -105px no-repeat")
+            $('#control-volume_butt').attr("style",
+                "background: url(img/niputv-player-ico.png) 0px -105px no-repeat")
         } else {
             video.muted = true;
-            $('#control-volume_butt').attr("style","background: url(img/niputv-player-ico.png) 0px -155px no-repeat")
+            $('#control-volume_butt').attr("style",
+                "background: url(img/niputv-player-ico.png) 0px -155px no-repeat")
         }
     });
-    
-$('.niputv-player-volume-poup_control').on('click mousewheel DOMMouseScroll', function(e) {
-		e = e || window.event;
-		volumeControl(e);
-		e.stopPropagation();
-		return false;
-	});
-    
-$('video')[0].volume = 1;
- function volumeControl(e) {
-		e = e || window.event;
-		var eventype = e.type;
-		var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) || (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));
-		var positions = 0;
-		var percentage = 0;
-		if (eventype == "click") {
-			positions = $('.niputv-player-volume-poup_control').find('.niputv-player-volume-poup_controlfilling').offset().top - e.pageY;
-			percentage = 100 * (positions + $('.niputv-player-volume-poup_control').find('.niputv-player-volume-poup_controlfilling').height()) / $('.niputv-player-volume-poup_control').height();
-		} else if (eventype == "mousewheel" || eventype == "DOMMouseScroll") {
-			percentage = 100 * ($('.niputv-player-volume-poup_control').find('.niputv-player-volume-poup_controlfilling').height() + delta) / $('.niputv-player-volume-poup_control').height();
-		}
-		if (percentage < 0) {
-			percentage = 0;
-		}
-	
-		if (percentage >= 100) {
-			percentage = 100;
-		}
-		$('.niputv-player-volume-poup_controlfilling').css('height', percentage + '%');
-		$('video')[0].volume = percentage / 100;
-		e.stopPropagation();
-		e.preventDefault();
-	}   
 
-	var timer=null;
-	$('#control-volume_butt').on('mouseover',function(){
-		clearInterval(timer);
-			$('#control-volume').css('display','block');
-		});
-	$('#control-volume_butt').on('mouseout',function(){
-		clearInterval(timer);
-		timer=setTimeout(function (){
-		$('#control-volume').css('display','none');
-	}, 200);		
-	});
-    
-     $("#control-play").click(function() {
-         play()
-     })    
-    
+    $('.niputv-player-volume-poup_control').on('click mousewheel DOMMouseScroll', function (e) {
+        e = e || window.event;
+        volumeControl(e);
+        e.stopPropagation();
+        return false;
+    });
+
+    $('video')[0].volume = 1;
+
+    function volumeControl(e) {
+        e = e || window.event;
+        var eventype = e.type;
+        var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) || (e.originalEvent.detail &&
+            (e.originalEvent.detail > 0 ? -1 : 1));
+        var positions = 0;
+        var percentage = 0;
+        if (eventype == "click") {
+            positions = $('.niputv-player-volume-poup_control').find('.niputv-player-volume-poup_controlfilling').offset()
+                .top - e.pageY;
+            percentage = 100 * (positions + $('.niputv-player-volume-poup_control').find(
+                '.niputv-player-volume-poup_controlfilling').height()) / $('.niputv-player-volume-poup_control').height();
+        } else if (eventype == "mousewheel" || eventype == "DOMMouseScroll") {
+            percentage = 100 * ($('.niputv-player-volume-poup_control').find(
+                '.niputv-player-volume-poup_controlfilling').height() + delta) / $(
+                '.niputv-player-volume-poup_control').height();
+        }
+        if (percentage < 0) {
+            percentage = 0;
+        }
+
+        if (percentage >= 100) {
+            percentage = 100;
+        }
+        $('.niputv-player-volume-poup_controlfilling').css('height', percentage + '%');
+        $('video')[0].volume = percentage / 100;
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
+    var timer = null;
+    $('#control-volume_butt').on('mouseover', function () {
+        clearInterval(timer);
+        $('#control-volume').css('display', 'block');
+    });
+    $('#control-volume_butt').on('mouseout', function () {
+        clearInterval(timer);
+        timer = setTimeout(function () {
+            $('#control-volume').css('display', 'none');
+        }, 200);
+    });
+
+    $("#control-play").click(function () {
+        play()
+    })
+
+    $("#123").click(function () {
+        play()
+    })
+
     var timeDrag = false;
     $('#play-filling_all').mousedown(function (e) {
         timeDrag = true;
@@ -138,6 +159,11 @@ $('video')[0].volume = 1;
         }
     });
 
+
+    $("#control-video_sharpness").click(function(e){
+        $("#video_sharpness_list").toggle()
+    })
+    
     var updatebar = function (x) {
         var progress = $('#play-filling_all');
         var maxduration = video.duration;
