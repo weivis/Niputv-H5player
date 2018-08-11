@@ -80,3 +80,12 @@
 							$("#niputv-player-control").stop(true, false).animate({'opacity' : '0'});
 						});
     })
+    function formatTime(time) {
+        var hour = Math.floor(time / 3600);
+        var other = time % 3600;
+        var minute = Math.floor(other / 60);
+        var second = (other % 60).toFixed(0);
+        var showTime = hour + ':' + minute + ':' + second;
+        return showTime;
+    };
+    
