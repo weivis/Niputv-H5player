@@ -2,106 +2,85 @@
 <style>
 body{margin: 0}
 /**播放器主体**/
-video::-webkit-media-controls{
-    display:none !important;
-}
+video::-webkit-media-controls{display:none !important;}
 .niputv-player{max-width: 1280px;max-height: 720px;width: 100%;height: 100%;position: relative}
-
 /**播放器video标签**/
 .niputv-player-video video{width: 100%;height: 100%;z-index: 10}
-
 /**播放器控件主体**/
 .niputv-player-control.main{width: calc(100% - 26px);padding-left: 13px;padding-right: 13px;padding-top: 97px; height: 80px; position: absolute;bottom: 0px;z-index: 90;color: #fff;left: 0;right: 0;margin: auto;background-image: url(img/control-shon.png);background-repeat: repeat-x;background-position: 0px 28px}
 .niputv-player-control.bottom{height: 50px;position: absolute;bottom: 0px;left: 0;right: 0;width: calc(100% - 26px);margin: auto}
-
 /**播放结束**/
 .niputv-player-playover{position: absolute;top: 0;left: 0;right: 0;height: 70px;z-index: 99999999999;background-color: #00000050;display: none}
 .niputv-player-playover-v.title{font-size: 18px;padding-left: 15px;color: #fff;margin-top: 10px;float: left;width: 50%}
 .niputv-player-playover-v.rplay{width: 135px;height: 45px;border-radius: 5px;background-color: #00000050;margin-right: 13px;margin-top: 13px;float: right;cursor: pointer}
-    
 /**播放器时间轴主体**/
 .niputv-player-control-timeline.main{width: 100%;height: 2px;border-radius: 20px;background-color: #ffffff60;margin-top: 28px;position: absolute;bottom: 0;}
 .niputv-player-control-timeline.filling{float: left;height: 100%;width: 0%;background-color: #ff4280;border-radius: 20px;}
 .niputv-player-control-timeline.main:hover{height: 6px;}
-
-.niputv-player-popu.buffer{position: absolute;left: 15px;bottom: 65px;color: #Fff;font-size: 14px;display: none}
-    
 /**顶层播放键**/
 .niputv-player-popu.topplay{position: absolute;z-index: 999;bottom: 15%;right: 5%}
 .niputv-player-popu.topplay-ico{width: 100px;height: 100px;}
-    
 /**控件**/
 .niputv-player-control.play{width: 50px;height: 50px;float: left;}
 .niputv-player-control.time{height: 100%;float: left;margin-left: 0px;float: left;line-height: 50px;font-size: 12.5px;}
 .niputv-player-control.full_screen{width: 50px;height: 40px;float: right;margin-top: 4px;}
 .niputv-player-control.video_sharpness{width: 70px;height: 50px;float: right;text-align: center;line-height: 50px;font-size: 12.5px;cursor: pointer}
-
+/**音量**/
 .niputv-player-volume-poup{width: 50px;height: 120px;background-color: #00000050;position: absolute;right: 50px;bottom: 54px;display: none}
 .niputv-player-volume-poup:hover{display: block !important}
-
 .niputv-player-volume-poup_control{width: 6px;height: 90px;background-color: #ffffff60;margin: 0 auto;margin-top: 15px;border-radius: 20px;position: relative;overflow: hidden}
-
 .niputv-player-volume-poup_controlfilling{position: absolute;bottom: 0;left: 0;right: 0;width: 100%;height: 100%; background-color: #ff4280;border-radius: 20px;}
 /**.niputv-player-control.play:hover{background-position: -50px 0px !important}**/
-
+/**清晰度**/
 .niputv-player-sharpness-poup.main{width: 70px;position: absolute;bottom: 54px;right: 100px;}
 .niputv-player-sharpness-poup.a{width: 100%;height: 35px;background-color: #00000060;font-size: 12px;line-height: 35px;text-align: center;cursor: pointer}
 .niputv-player-sharpness-poup.a:hover{background-color: #ff4280}
-
 /**提示控件**/
-#sharpness-important{position: absolute;font-size: 14px;bottom: 65px}
-    
+#sharpness-important{position: absolute;font-size: 14px;bottom: 65px}/**清晰度切换提示**/
+.niputv-player-popu.buffer{position: absolute;left: 15px;bottom: 65px;color: #Fff;font-size: 14px;display: none}/**加载提示**/
 </style>
 <script type="text/javascript" src="app/jquery.min.js"></script>
 </head>
 
 <div id="player">
-<div class="niputv-player" id="niputv-player">
-    <div class="niputv-player-playover" id="niputv-player-playover">
-        <div class="niputv-player-playover-v rplay" id="controls-rplay">
-            <div><div class="niputv-player-control play" style="background: url(img/niputv-player-ico.png) -150px -2.5px no-repeat"></div>
+    <div class="niputv-player" id="niputv-player">
+        <div class="niputv-player-playover" id="niputv-player-playover">
+            <div class="niputv-player-playover-v rplay" id="controls-rplay">
+                <div><div class="niputv-player-control play" style="background: url(img/niputv-player-ico.png) -150px -2.5px no-repeat"></div></div>
+                <div style="float:  left;line-height: 45px;color: #fff;">重新播放</div>
             </div>
-            <div style="float:  left;line-height: 45px;color: #fff;">重新播放</div>
+            <div class="niputv-player-playover-v title">视频播放完毕</div>
+            <div class="niputv-player-playover-v title" style="font-size: 14px;margin-top: 5px;">如果支持该作者记得给作者点赞！</div>
         </div>
-        <div class="niputv-player-playover-v title">视频播放完毕</div>
-        <div class="niputv-player-playover-v title" style="font-size: 14px;margin-top: 5px;">如果支持该作者记得给作者点赞！</div>
-    </div>
-    
-    <div class="niputv-player-popu buffer">正在加载</div>
-    <div class="niputv-player-popu topplay">
-        <div style="background: url(img/niputv-player-ico.png) 0px -250px no-repeat" class="niputv-player-popu topplay-ico" id="control-topplay"></div>
-    </div>
-    <div class="niputv-player-video">
-        <video src="" id="video" controls="controls" autobuffer></video>
-    </div>
-    <div class="niputv-player-control main" id="niputv-player-control">
-        <div id="sharpness-important" style="display: none"></div>
-        <div id="play-filling_all" style="height: 28px;width: 100%;position: relative";>
-            <div class="niputv-player-control-timeline main">
-                <div class="niputv-player-control-timeline filling" id="play-filling"></div>
+        <div class="niputv-player-popu buffer">正在加载</div>
+        <div class="niputv-player-popu topplay">
+            <div style="background: url(img/niputv-player-ico.png) 0px -250px no-repeat" class="niputv-player-popu topplay-ico" id="control-topplay"></div>
+        </div>
+        <div class="niputv-player-video"><video src="" id="video" controls="controls" autobuffer></video></div>
+        <div class="niputv-player-control main" id="niputv-player-control">
+            <div id="sharpness-important" style="display: none"></div>
+            <div id="play-filling_all" style="height: 28px;width: 100%;position: relative" ;>
+                <div class="niputv-player-control-timeline main"><div class="niputv-player-control-timeline filling" id="play-filling"></div></div>
             </div>
-        </div>
-        <div class="niputv-player-control bottom">
-            <div class="niputv-player-volume-poup" id="control-volume">
-                <div class="niputv-player-volume-poup_control">
-                    <div class="niputv-player-volume-poup_controlfilling" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="niputv-player-control bottom">
+                <div class="niputv-player-volume-poup" id="control-volume">
+                    <div class="niputv-player-volume-poup_control">
+                        <div class="niputv-player-volume-poup_controlfilling" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
+                <div class="niputv-player-sharpness-poup main" id="video_sharpness_list" style="display: none" onselectstart="return false"></div>
+                <!--<div class="niputv-player-sharpness-poup a" data-sharpness="360P">360P</div>-->
+                <div class="niputv-player-control play" style="background: url(img/niputv-player-ico.png) 0px 0px no-repeat" id="control-play"></div>
+                <div class="niputv-player-control time">
+                    <span id="play-nowtime">00:00</span> /
+                    <span id="play-total_length">00:00</span>
+                </div>
+                <div class="niputv-player-control full_screen" style="background: url(img/niputv-player-ico.png) 0px -55px no-repeat" id="video-FullScreen"></div>
+                <div class="niputv-player-control full_screen" style="background: url(img/niputv-player-ico.png) 0px -105px no-repeat" id="control-volume_butt"></div>
+                <div class="niputv-player-control video_sharpness" id="control-video_sharpness" onselectstart="return false"></div>
             </div>
-            <div class="niputv-player-sharpness-poup main" id="video_sharpness_list" style="display: none"  onselectstart="return false">
-                
-            </div>
-            <!--<div class="niputv-player-sharpness-poup a" data-sharpness="360P">360P</div>-->
-            <div class="niputv-player-control play" style="background: url(img/niputv-player-ico.png) 0px 0px no-repeat" id="control-play"></div>
-            <div class="niputv-player-control time">
-                <span id="play-nowtime">00:00</span> /
-                <span id="play-total_length">00:00</span>
-            </div>
-            <div class="niputv-player-control full_screen" style="background: url(img/niputv-player-ico.png) 0px -55px no-repeat" id="video-FullScreen"></div>
-            <div class="niputv-player-control full_screen" style="background: url(img/niputv-player-ico.png) 0px -105px no-repeat" id="control-volume_butt"></div>
-            <div class="niputv-player-control video_sharpness" id="control-video_sharpness" onselectstart="return false"></div>
         </div>
     </div>
-</div>
 </div>
 <div data-key='{"key": "2.mp4", "360": true, "480": true, "720": true, "1080": true, "2k": false, "4k": false}' id="videokey"></div>
 
