@@ -1,26 +1,40 @@
+body{margin: 0}
 /**播放器主体**/
+video::-webkit-media-controls{
+    display:none !important;
+}
 .niputv-player{max-width: 1280px;max-height: 720px;width: 100%;height: 100%;position: relative}
 
 /**播放器video标签**/
 .niputv-player-video video{width: 100%;height: 100%;z-index: 10}
 
 /**播放器控件主体**/
-.niputv-player-control.main{width: calc(100% - 26px);padding-left: 13px;padding-right: 13px;padding-top: 97px; height: 52px; position: absolute;bottom: 0px;z-index: 90;color: #fff;left: 0;right: 0;margin: auto;background-image: url(../img/control-shon.png);}
-
+.niputv-player-control.main{width: calc(100% - 26px);padding-left: 13px;padding-right: 13px;padding-top: 97px; height: 80px; position: absolute;bottom: 0px;z-index: 90;color: #fff;left: 0;right: 0;margin: auto;background-image: url(img/control-shon.png);background-repeat: repeat-x;background-position: 0px 28px}
 .niputv-player-control.bottom{height: 50px;position: absolute;bottom: 0px;left: 0;right: 0;width: calc(100% - 26px);margin: auto}
 
+/**播放结束**/
+.niputv-player-playover{position: absolute;top: 0;left: 0;right: 0;height: 70px;z-index: 99999999999;background-color: #00000050;display: none}
+.niputv-player-playover-v.title{font-size: 18px;padding-left: 15px;color: #fff;margin-top: 10px;float: left;width: 50%}
+.niputv-player-playover-v.rplay{width: 135px;height: 45px;border-radius: 5px;background-color: #00000050;margin-right: 13px;margin-top: 13px;float: right;cursor: pointer}
+    
 /**播放器时间轴主体**/
-.niputv-player-control-timeline.main{width: 100%;height: 2px;border-radius: 20px;background-color: #ffffff60;}
+.niputv-player-control-timeline.main{width: 100%;height: 2px;border-radius: 20px;background-color: #ffffff60;margin-top: 28px;position: absolute;bottom: 0;}
 .niputv-player-control-timeline.filling{float: left;height: 100%;width: 0%;background-color: #ff4280;border-radius: 20px;}
 .niputv-player-control-timeline.main:hover{height: 6px;}
 
+.niputv-player-popu.buffer{position: absolute;left: 15px;bottom: 65px;color: #Fff;font-size: 14px;display: none}
+    
+/**顶层播放键**/
+.niputv-player-popu.topplay{position: absolute;z-index: 999;bottom: 15%;right: 5%}
+.niputv-player-popu.topplay-ico{width: 100px;height: 100px;}
+    
 /**控件**/
 .niputv-player-control.play{width: 50px;height: 50px;float: left;}
 .niputv-player-control.time{height: 100%;float: left;margin-left: 0px;float: left;line-height: 50px;font-size: 12.5px;}
 .niputv-player-control.full_screen{width: 50px;height: 40px;float: right;margin-top: 4px;}
 .niputv-player-control.video_sharpness{width: 70px;height: 50px;float: right;text-align: center;line-height: 50px;font-size: 12.5px;cursor: pointer}
 
-.niputv-player-volume-poup{width: 50px;height: 120px;background-color: #00000050;position: absolute;right: 50px;bottom: 52px;display: none}
+.niputv-player-volume-poup{width: 50px;height: 120px;background-color: #00000050;position: absolute;right: 50px;bottom: 54px;display: none}
 .niputv-player-volume-poup:hover{display: block !important}
 
 .niputv-player-volume-poup_control{width: 6px;height: 90px;background-color: #ffffff60;margin: 0 auto;margin-top: 15px;border-radius: 20px;position: relative;overflow: hidden}
@@ -28,6 +42,10 @@
 .niputv-player-volume-poup_controlfilling{position: absolute;bottom: 0;left: 0;right: 0;width: 100%;height: 100%; background-color: #ff4280;border-radius: 20px;}
 /**.niputv-player-control.play:hover{background-position: -50px 0px !important}**/
 
-.niputv-player-sharpness-poup.main{width: 70px;position: absolute;bottom: 52px;right: 100px;}
-.niputv-player-sharpness-poup.a{width: 100%;height: 35px;background-color: #00000060;font-size: 12px;line-height: 35px;text-align: center}
+.niputv-player-sharpness-poup.main{width: 70px;position: absolute;bottom: 54px;right: 100px;}
+.niputv-player-sharpness-poup.a{width: 100%;height: 35px;background-color: #00000060;font-size: 12px;line-height: 35px;text-align: center;cursor: pointer}
 .niputv-player-sharpness-poup.a:hover{background-color: #ff4280}
+
+/**提示控件**/
+#sharpness-important{position: absolute;font-size: 14px;bottom: 65px}
+    
