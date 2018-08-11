@@ -61,3 +61,13 @@
         function () {
             insert_video_sharpness(this)
         });
+    /**播放器主体**/
+    var video = document.getElementById("video");
+
+    /**现在播放时间-视频总时长**/
+    var play_nowtime = document.getElementById("play-nowtime");
+    var play_total_length = document.getElementById("play-total_length");
+
+    /**视频播放进度条**/
+    var player_filling_all = document.getElementById("play-filling_all");
+    var player_filling = document.getElementById("play-filling");
