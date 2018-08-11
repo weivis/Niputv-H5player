@@ -240,3 +240,14 @@
             updatebar(e.pageX);
         }
     });
+    //清晰度弹窗隐藏
+    $("#control-video_sharpness").click(function (e) {
+        $("#video_sharpness_list").toggle()
+    })
+
+    function sharpness_important(data) {
+            $("#sharpness-important").fadeIn({
+                duration: 300
+            });
+            $("#sharpness-important").html('正在为你切换清晰度至'+data)
+    }
