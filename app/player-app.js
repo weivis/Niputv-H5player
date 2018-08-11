@@ -57,3 +57,7 @@
         $("#control-video_sharpness").html("720P")
         $("#video").attr("src",videofilekey + '-720p.mp4')
     }
+    $.each((videoptype_list),
+        function () {
+            insert_video_sharpness(this)
+        });
