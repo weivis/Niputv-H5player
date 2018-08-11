@@ -169,3 +169,4 @@
         e.stopPropagation();
         return false;
     });
+    $('video')[0].volume = 1;
