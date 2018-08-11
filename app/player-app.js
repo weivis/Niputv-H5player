@@ -89,3 +89,12 @@
         return showTime;
     };
     
+	$(window).keyup(function(event){
+		event = event || window.event;
+			if(event.keyCode == 27){
+                exitFullscreen()
+			};
+		event.preventDefault();
+        a = 0
+        return a
+	});
