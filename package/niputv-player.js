@@ -6,7 +6,7 @@ $("head").prepend('<style>' +
 '/**播放器video标签**/' +
 '.niputv-player-video video{width: 100%;height: 100%;z-index: 10}' +
 '/**播放器控件主体**/' +
-'.niputv-player-control.main{width: calc(100% - 26px);padding-left: 13px;padding-right: 13px;padding-top: 97px; height: 80px; position: absolute;bottom: 0px;z-index: 90;color: #fff;left: 0;right: 0;margin: auto;background-image: url(img/control-shon.png);background-repeat: repeat-x;background-position: 0px 28px}' +
+'.niputv-player-control.main{width: calc(100% - 26px);padding-left: 13px;padding-right: 13px;padding-top: 97px; height: 80px; position: absolute;bottom: 0px;z-index: 90;color: #fff;left: 0;right: 0;margin: auto;background-image: url(/static/player/img/control-shon.png);background-repeat: repeat-x;background-position: 0px 28px}' +
 '.niputv-player-control.bottom{height: 50px;position: absolute;bottom: 0px;left: 0;right: 0;width: calc(100% - 26px);margin: auto}' +
 '/**播放结束**/' +
 '.niputv-player-playover{position: absolute;top: 0;left: 0;right: 0;height: 70px;z-index: 99999999999;background-color: #00000050;display: none}' +
@@ -42,7 +42,7 @@ $("head").prepend('<style>' +
 $("#player").prepend('<div class="niputv-player" id="niputv-player">' +
 '<div class="niputv-player-playover" id="niputv-player-playover">' +
 '<div class="niputv-player-playover-v rplay" id="controls-rplay">' +
-'<div><div class="niputv-player-control play" style="background: url(img/niputv-player-ico.png) -150px -2.5px no-repeat"></div></div>' +
+'<div><div class="niputv-player-control play" style="background: url(/static/player/img/niputv-player-ico.png) -150px -2.5px no-repeat"></div></div>' +
 '<div style="float:  left;line-height: 45px;color: #fff;">重新播放</div>' +
 '</div>' +
 '<div class="niputv-player-playover-v title">视频播放完毕</div>' +
@@ -50,7 +50,7 @@ $("#player").prepend('<div class="niputv-player" id="niputv-player">' +
 '</div>' +
 '<div class="niputv-player-popu buffer">正在加载</div>' +
 '<div class="niputv-player-popu topplay">' +
-'<div style="background: url(img/niputv-player-ico.png) 0px -250px no-repeat" class="niputv-player-popu topplay-ico" id="control-topplay"></div>' +
+'<div style="background: url(/static/player/img/niputv-player-ico.png) 0px -250px no-repeat" class="niputv-player-popu topplay-ico" id="control-topplay"></div>' +
 '</div>' +
 '<div class="niputv-player-video"><video src="" id="video" controls="controls" autobuffer></video></div>' +
 '<div class="niputv-player-control main" id="niputv-player-control">' +
@@ -66,14 +66,16 @@ $("#player").prepend('<div class="niputv-player" id="niputv-player">' +
 '</div>' +
 '<div class="niputv-player-sharpness-poup main" id="video_sharpness_list" style="display: none" onselectstart="return false"></div>' +
 '<!--<div class="niputv-player-sharpness-poup a" data-sharpness="360P">360P</div>-->' +
-'<div class="niputv-player-control play" style="background: url(img/niputv-player-ico.png) 0px 0px no-repeat" id="control-play"></div>' +
+'<div class="niputv-player-control play" style="background: url(/static/player/img/niputv-player-ico.png) 0px 0px no-repeat" id="control-play"></div>' +
 '<div class="niputv-player-control time">' +
 '<span id="play-nowtime">00:00</span> / <span id="play-total_length">00:00</span>' +
 '</div>' +
-'<div class="niputv-player-control full_screen" style="background: url(img/niputv-player-ico.png) 0px -55px no-repeat" id="video-FullScreen"></div>' +
-'<div class="niputv-player-control full_screen" style="background: url(img/niputv-player-ico.png) 0px -105px no-repeat" id="control-volume_butt"></div>' +
+'<div class="niputv-player-control full_screen" style="background: url(/static/player/img/niputv-player-ico.png) 0px -55px no-repeat" id="video-FullScreen"></div>' +
+'<div class="niputv-player-control full_screen" style="background: url(/static/player/img/niputv-player-ico.png) 0px -105px no-repeat" id="control-volume_butt"></div>' +
 '<div class="niputv-player-control video_sharpness" id="control-video_sharpness" onselectstart="return false"></div>' +
 '</div></div></div>')
+
+videobucket = 'http://pclfl90b9.bkt.clouddn.com/'
 
 setTimeout(function () {
     //提取filekey
@@ -140,15 +142,15 @@ setTimeout(function () {
     //视频清晰度优先排序
     if (getvideofile['360'] == true) {
         $("#control-video_sharpness").html("360P")
-        $("#video").attr("src", videofilekey + '-360p.mp4')
+        $("#video").attr("src", videobucket + videofilekey + '-360p.mp4')
     }
     if (getvideofile['480'] == true) {
         $("#control-video_sharpness").html("480P")
-        $("#video").attr("src", videofilekey + '-480p.mp4')
+        $("#video").attr("src", videobucket + videofilekey + '-480p.mp4')
     }
     if (video_sharpness720p == true) {
         $("#control-video_sharpness").html("720P")
-        $("#video").attr("src", videofilekey + '-720p.mp4')
+        $("#video").attr("src", videobucket + videofilekey + '-720p.mp4')
     }
 
     //循环写入可选清晰度
@@ -389,7 +391,7 @@ setTimeout(function () {
     function video_sharpness(sharpness) {
         //alert(sharpness)
         var currentTimeBak = video.currentTime;
-        $("#video").attr("src", videofilekey + '-' + sharpness + '.mp4')
+        $("#video").attr("src", videobucket + videofilekey + '-' + sharpness + '.mp4')
         video.currentTime = currentTimeBak;
         play()
         $("#sharpness-important").html('以为你切换到' + sharpness)
