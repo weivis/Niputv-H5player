@@ -163,3 +163,9 @@
                 "background: url(img/niputv-player-ico.png) 0px -155px no-repeat")
         }
     });
+    $('.niputv-player-volume-poup_control').on('click mousewheel DOMMouseScroll', function (e) {
+        e = e || window.event;
+        volumeControl(e);
+        e.stopPropagation();
+        return false;
+    });
