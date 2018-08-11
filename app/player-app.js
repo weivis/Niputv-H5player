@@ -98,3 +98,16 @@
         a = 0
         return a
 	});
+    //全屏按钮
+    a = 0
+    $('#video-FullScreen').on('click', function() {
+        if(a==0){
+           FullScreen()
+            a = 1
+            console.log(a)
+        }else{
+            exitFullscreen()
+            a = 0
+            console.log(a)
+        }
+    });
