@@ -9,3 +9,9 @@
                 'calss'] + '">' + data['calss'] + '</div>')
         }
     }
+    $('#video').on('waiting', function() {
+       $(".niputv-player-popu.buffer").fadeIn()
+    });
+    $('#video').on('canplay', function() {
+       $(".niputv-player-popu.buffer").fadeOut()
+    });
