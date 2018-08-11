@@ -170,3 +170,43 @@
         return false;
     });
     $('video')[0].volume = 1;
+    function volumeControl(e) {
+        e = e || window.event;
+        var eventype = e.type;
+        var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) || (e.originalEvent.detail &&
+            (e.originalEvent.detail > 0 ? -1 : 1));
+        var positions = 0;
+        var percentage = 0;
+        if (eventype == "click") {
+            positions = $('.niputv-player-volume-poup_control').find('.niputv-player-volume-poup_controlfilling').offset()
+                .top - e.pageY;
+            percentage = 100 * (positions + $('.niputv-player-volume-poup_control').find(
+                '.niputv-player-volume-poup_controlfilling').height()) / $('.niputv-player-volume-poup_control').height();
+        } else if (eventype == "mousewheel" || eventype == "DOMMouseScroll") {
+            percentage = 100 * ($('.niputv-player-volume-poup_control').find(
+                '.niputv-player-volume-poup_controlfilling').height() + delta) / $(
+                '.niputv-player-volume-poup_control').height();
+        }
+        if (percentage < 0) {
+            percentage = 0;
+        }
+
+        if (percentage >= 100) {
+            percentage = 100;
+        }
+        $('.niputv-player-volume-poup_controlfilling').css('height', percentage + '%');
+        $('video')[0].volume = percentage / 100;
+        e.stopPropagation();
+        e.preventDefault();
+    }
+    var timer = null;
+    $('#control-volume_butt').on('mouseover', function () {
+        clearInterval(timer);
+        $('#control-volume').css('display', 'block');
+    });
+    $('#control-volume_butt').on('mouseout', function () {
+        clearInterval(timer);
+        timer = setTimeout(function () {
+            $('#control-volume').css('display', 'none');
+        }, 200);
+    });
