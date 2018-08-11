@@ -251,3 +251,28 @@
             });
             $("#sharpness-important").html('正在为你切换清晰度至'+data)
     }
+    //清晰度调用
+    $(function () {
+        $('#video_sharpness_list').on('click', '.niputv-player-sharpness-poup.a', function () {
+            data = $(this).data("sharpness")
+            $('#control-video_sharpness').html(data);
+            $("#video_sharpness_list").toggle()
+            sharpness_important(data)
+            video_sharpness(data)
+        });
+    });
+
+    //清晰度实现切换
+    function video_sharpness(sharpness) {
+        //alert(sharpness)
+        var currentTimeBak = video.currentTime;
+        $("#video").attr("src",videofilekey + '-' + sharpness + '.mp4')
+        video.currentTime = currentTimeBak;
+        play()
+        $("#sharpness-important").html('以为你切换到'+sharpness)
+        setTimeout(function(){
+            $('#sharpness-important').fadeOut({
+                duration: 1000
+            });//找到对应的标签隐藏
+        },2200)//3000是表示3秒后执行隐藏代码
+    }
