@@ -299,3 +299,11 @@
         play_total_length.innerHTML = showTime
     });
 
+    video.addEventListener('timeupdate', function () {
+        var currentTime = video.currentTime; //Get currenttime
+        var showTime = formatTime(currentTime);
+        var maxduration = video.duration; //Get myVideo duration
+        var percentage = 100 * currentTime / maxduration; //in %
+        player_filling.style.cssText = "width:" + percentage + "%";
+        play_nowtime.innerHTML = showTime
+    });
