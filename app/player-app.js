@@ -276,3 +276,20 @@
             });//找到对应的标签隐藏
         },2200)//3000是表示3秒后执行隐藏代码
     }
+    var updatebar = function (x) {
+        var progress = $('#play-filling_all');
+        var maxduration = video.duration;
+        var position = x - progress.offset().left;
+        var percentage = 100 * position / progress.width();
+
+        if (percentage > 100) {
+            percentage = 100;
+        }
+        if (percentage < 0) {
+            percentage = 0;
+        }
+
+        //Update progress bar and video currenttime
+        $('#play-filling').css('width', percentage + '%');
+        video.currentTime = maxduration * percentage / 100;
+    };
