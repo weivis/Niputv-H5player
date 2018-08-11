@@ -210,3 +210,15 @@
             $('#control-volume').css('display', 'none');
         }, 200);
     });
+    $("#control-play").click(function () {
+        play()
+    })
+
+    $("#control-topplay").click(function () {
+        play()
+        $("#control-topplay").fadeOut()
+    })
+    
+    $("#video").click(function () {
+        play()
+    })
