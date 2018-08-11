@@ -15,3 +15,29 @@
     $('#video').on('canplay', function() {
        $(".niputv-player-popu.buffer").fadeOut()
     });
+    var getvideofile = $("#videokey").data("key")
+    var videoptype_list = [{
+            "calss": "360P",
+            "type": getvideofile['360']
+        },
+        {
+            "calss": "480P",
+            "type": getvideofile['480']
+        },
+        {
+            "calss": "720P",
+            "type": getvideofile['720']
+        },
+        {
+            "calss": "1080P",
+            "type": getvideofile['1080']
+        },
+        {
+            "calss": "2K",
+            "type": getvideofile['2k']
+        },
+        {
+            "calss": "4K",
+            "type": getvideofile['4k']
+        },
+    ]
