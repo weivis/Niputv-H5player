@@ -1,3 +1,6 @@
+//初始化
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('2=\'1://0.5.4.3/\'',6,6,'pclfl90b9|http|videobucket|com|clouddn|bkt'.split('|'),0,{}))
+//--------------------------------------------------------------------
 //写入播放器组建
 $("head").prepend('<style>' +
 '/**播放器主体**/' +
@@ -75,8 +78,6 @@ $("#player").prepend('<div class="niputv-player" id="niputv-player">' +
 '<div class="niputv-player-control video_sharpness" id="control-video_sharpness" onselectstart="return false"></div>' +
 '</div></div></div>')
 
-videobucket = 'http://pclfl90b9.bkt.clouddn.com/'
-
 setTimeout(function () {
     //提取filekey
     function getFileName(path) {
@@ -89,7 +90,7 @@ setTimeout(function () {
     function insert_video_sharpness(data) {
         if (data['type'] == true) {
             $("#video_sharpness_list").prepend('<div class="niputv-player-sharpness-poup a" data-sharpness="' + data[
-                'calss'] + '">' + data['calss'] + '</div>')
+                'datacalss'] + '">' + data['calss'] + '</div>')
         }
     }
 
@@ -108,26 +109,32 @@ setTimeout(function () {
     var getvideofile = $("#videokey").data("key")
     var videoptype_list = [{
             "calss": "360P",
+            "datacalss": "360p",
             "type": getvideofile['360']
         },
         {
             "calss": "480P",
+            "datacalss": "480p",
             "type": getvideofile['480']
         },
         {
             "calss": "720P",
+            "datacalss": "720p",
             "type": getvideofile['720']
         },
         {
             "calss": "1080P",
+            "datacalss": "1080p",
             "type": getvideofile['1080']
         },
         {
             "calss": "2K",
+            "datacalss": "2k",
             "type": getvideofile['2k']
         },
         {
             "calss": "4K",
+            "datacalss": "4k",
             "type": getvideofile['4k']
         },
     ]
@@ -206,59 +213,68 @@ setTimeout(function () {
     });
 
     //全屏按钮
-    a = 0
-    $('#video-FullScreen').on('click', function () {
-        if (a == 0) {
-            FullScreen()
-            a = 1
-            console.log(a)
+    $('#video-FullScreen').on('click', function() {
+        if (!document.webkitIsFullScreen) {
+            $(".niputv-player").css("max-width", "100%")
+            $(".niputv-player").css("max-height", "100%")
+            $("#player").css({"position":"absolute","top":"0","bottom":"0","left":"0","right":"0","z-index":"99999999999999999"})
+    
+            var ele = document.documentElement;
+            if (ele.requestFullscreen) {
+                ele.requestFullscreen();
+                $("#niputv-player").requestFullscreen()
+            } else if (ele.mozRequestFullScreen) {
+                ele.mozRequestFullScreen();
+                $("#niputv-player").mozRequestFullScreen()
+            } else if (ele.webkitRequestFullScreen) {
+                ele.webkitRequestFullScreen();
+                $("#niputv-player").webkitRequestFullScreen()
+            }
         } else {
-            exitFullscreen()
-            a = 0
-            console.log(a)
+            $(".niputv-player").css("max-width", "1280px")
+            $(".niputv-player").css("max-height", "720px")
+            $("#player").css({"position":"inherit","top":"inherit","bottom":"inherit","left":"inherit","right":"inherit","z-index":"inherit"})
+            var de = document;
+            if (de.exitFullscreen) {
+                de.exitFullscreen();
+            } else if (de.mozCancelFullScreen) {
+                de.mozCancelFullScreen();
+            } else if (de.webkitCancelFullScreen) {
+                de.webkitCancelFullScreen();
+            }
         }
     });
 
-    //多兼容全屏退出全屏处理
-    function FullScreen() {
-
-        $(".niputv-player").css("max-width", "100%")
-        $(".niputv-player").css("max-height", "100%")
-
-        var ele = document.documentElement;
-        if (ele.requestFullscreen) {
-            ele.requestFullscreen();
-        } else if (ele.mozRequestFullScreen) {
-            ele.mozRequestFullScreen();
-        } else if (ele.webkitRequestFullScreen) {
-            ele.webkitRequestFullScreen();
-        }
-    }
-    function exitFullscreen() {
-        $(".niputv-player").css("max-width", "1280px")
-        $(".niputv-player").css("max-height", "720px")
-        var de = document;
-        if (de.exitFullscreen) {
-            de.exitFullscreen();
-        } else if (de.mozCancelFullScreen) {
-            de.mozCancelFullScreen();
-        } else if (de.webkitCancelFullScreen) {
-            de.webkitCancelFullScreen();
-        }
-    }
+    $(function(){
+        $(window).keydown(function (event) {
+           if (event.keyCode == 27) {
+            $(".niputv-player").css("max-width", "1280px")
+            $(".niputv-player").css("max-height", "720px")
+            $("#player").css({"position":"inherit","top":"inherit","bottom":"inherit","left":"inherit","right":"inherit","z-index":"inherit"})
+            var de = document;
+            if (de.exitFullscreen) {
+                de.exitFullscreen();
+            } else if (de.mozCancelFullScreen) {
+                de.mozCancelFullScreen();
+            } else if (de.webkitCancelFullScreen) {
+                de.webkitCancelFullScreen();
+            }
+           }
+       });
+   });
 
     //统一播放调用
     function play() {
         this.controls = true;
         if (video.paused) {
             video.play()
-            video_playbutt.style.cssText = "background: url(img/niputv-player-ico.png) -100px -0px no-repeat";
+            video_playbutt.style.cssText = "background: url(/static/player/img/niputv-player-ico.png) -100px -0px no-repeat";
             $("#control-topplay").fadeOut()
             $("#niputv-player-playover").fadeOut()
         } else {
             $("#control-topplay").fadeIn()
             video.pause()
-            video_playbutt.style.cssText = "background: url(img/niputv-player-ico.png) 0px 0px no-repeat";
+            video_playbutt.style.cssText = "background: url(/static/player/img/niputv-player-ico.png) 0px 0px no-repeat";
         }
     };
 
@@ -267,11 +283,11 @@ setTimeout(function () {
         if (video.muted == true) {
             video.muted = false;
             $('#control-volume_butt').attr("style",
-                "background: url(img/niputv-player-ico.png) 0px -105px no-repeat")
+                "background: url(/static/player/img/niputv-player-ico.png) 0px -105px no-repeat")
         } else {
             video.muted = true;
             $('#control-volume_butt').attr("style",
-                "background: url(img/niputv-player-ico.png) 0px -155px no-repeat")
+                "background: url(/static/player/img/niputv-player-ico.png) 0px -155px no-repeat")
         }
     });
 
@@ -445,7 +461,7 @@ setTimeout(function () {
 
     //监听视频播放完成事件
     video.addEventListener('ended', function () {
-        video_playbutt.style.cssText = "background: url(img/niputv-player-ico.png) 0px 0px no-repeat";
+        video_playbutt.style.cssText = "background: url(/static/player/img/niputv-player-ico.png) 0px 0px no-repeat";
         $("#niputv-player-playover").fadeIn()
     });
 })
