@@ -71,3 +71,12 @@
     /**视频播放进度条**/
     var player_filling_all = document.getElementById("play-filling_all");
     var player_filling = document.getElementById("play-filling");
+    /**播放控件**/
+    var video_playbutt = document.getElementById("control-play");
+    $('body, html').bind('mousemove', function(e) {
+                        $("#niputv-player-control").hover(function() {
+							$("#niputv-player-control").stop(true, false).animate({'opacity' : '1'});
+						}, function() {
+							$("#niputv-player-control").stop(true, false).animate({'opacity' : '0'});
+						});
+    })
