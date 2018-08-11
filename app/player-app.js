@@ -111,3 +111,31 @@
             console.log(a)
         }
     });
+    function FullScreen() {
+        
+        $(".niputv-player").css("max-width","100%")
+        $(".niputv-player").css("max-height","100%")
+        
+        var ele = document.documentElement;
+        if (ele .requestFullscreen) {
+            ele .requestFullscreen();
+        } else if (ele .mozRequestFullScreen) {
+            ele .mozRequestFullScreen();
+        } else if (ele .webkitRequestFullScreen) {
+            ele .webkitRequestFullScreen();
+        }
+    }
+    
+    //退出全屏
+    function exitFullscreen() {
+        $(".niputv-player").css("max-width","1280px")
+        $(".niputv-player").css("max-height","720px")
+        var de = document;
+        if (de.exitFullscreen) {
+            de.exitFullscreen();
+        } else if (de.mozCancelFullScreen) {
+            de.mozCancelFullScreen();
+        } else if (de.webkitCancelFullScreen) {
+            de.webkitCancelFullScreen();
+        }
+    }
