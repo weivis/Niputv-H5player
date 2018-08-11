@@ -222,3 +222,21 @@
     $("#video").click(function () {
         play()
     })
+    var timeDrag = false;
+    $('#play-filling_all').mousedown(function (e) {
+        timeDrag = true;
+        updatebar(e.pageX);
+    });
+
+    $(document).mouseup(function (e) {
+        if (timeDrag) {
+            timeDrag = false;
+            updatebar(e.pageX);
+        }
+    });
+
+    $(document).mousemove(function (e) {
+        if (timeDrag) {
+            updatebar(e.pageX);
+        }
+    });
