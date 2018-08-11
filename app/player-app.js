@@ -307,3 +307,6 @@
         player_filling.style.cssText = "width:" + percentage + "%";
         play_nowtime.innerHTML = showTime
     });
+    $("#controls-rplay").click(function () {
+        play()
+    })
