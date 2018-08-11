@@ -293,3 +293,9 @@
         $('#play-filling').css('width', percentage + '%');
         video.currentTime = maxduration * percentage / 100;
     };
+    video.addEventListener("loadedmetadata", function () {
+        var duration = video.duration;
+        var showTime = formatTime(duration);
+        play_total_length.innerHTML = showTime
+    });
+
