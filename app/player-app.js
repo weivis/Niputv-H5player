@@ -139,3 +139,16 @@
             de.webkitCancelFullScreen();
         }
     }
+    function play() {
+        this.controls = true;
+        if (video.paused) {
+            video.play()
+            video_playbutt.style.cssText = "background: url(img/niputv-player-ico.png) -100px -0px no-repeat";
+            $("#control-topplay").fadeOut()
+            $("#niputv-player-playover").fadeOut()
+        } else {
+            $("#control-topplay").fadeIn()
+            video.pause()
+            video_playbutt.style.cssText = "background: url(img/niputv-player-ico.png) 0px 0px no-repeat";
+        }
+    };
