@@ -152,3 +152,14 @@
             video_playbutt.style.cssText = "background: url(img/niputv-player-ico.png) 0px 0px no-repeat";
         }
     };
+    $('#control-volume_butt').on('click', function () {
+        if (video.muted == true) {
+            video.muted = false;
+            $('#control-volume_butt').attr("style",
+                "background: url(img/niputv-player-ico.png) 0px -105px no-repeat")
+        } else {
+            video.muted = true;
+            $('#control-volume_butt').attr("style",
+                "background: url(img/niputv-player-ico.png) 0px -155px no-repeat")
+        }
+    });
