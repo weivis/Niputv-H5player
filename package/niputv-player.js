@@ -218,6 +218,7 @@ setTimeout(function () {
             $(".niputv-player").css("max-width", "100%")
             $(".niputv-player").css("max-height", "100%")
             $("#player").css({"position":"absolute","top":"0","bottom":"0","left":"0","right":"0","z-index":"99999999999999999"})
+            $("body").css("overflow", "hidden")
     
             var ele = document.documentElement;
             if (ele.requestFullscreen) {
@@ -234,6 +235,7 @@ setTimeout(function () {
             $(".niputv-player").css("max-width", "1280px")
             $(".niputv-player").css("max-height", "720px")
             $("#player").css({"position":"inherit","top":"inherit","bottom":"inherit","left":"inherit","right":"inherit","z-index":"inherit"})
+            $("body").css("overflow", "inherit")
             var de = document;
             if (de.exitFullscreen) {
                 de.exitFullscreen();
@@ -299,10 +301,22 @@ setTimeout(function () {
         return false;
     });
 
-    $('video')[0].volume = 1;
+    //console.log($('video')[0].volume)
+
+    volumedata = localStorage.getItem("niputv_player_volume");
+    if(volumedata == null){
+        $('video')[0].volume = 0.50;
+        $('.niputv-player-volume-poup_controlfilling').css('height','50%');
+        var percentage = 0;
+    }else{
+        $('video')[0].volume = parseFloat(volumedata);
+        percentage = localStorage.getItem("niputv_player_ui")
+        $('.niputv-player-volume-poup_controlfilling').css('height', percentage + '%');
+    }
 
     //传入音量条点击更新音量
     function volumeControl(e) {
+
         e = e || window.event;
         var eventype = e.type;
         var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) || (e.originalEvent.detail &&
@@ -327,10 +341,16 @@ setTimeout(function () {
             percentage = 100;
         }
         $('.niputv-player-volume-poup_controlfilling').css('height', percentage + '%');
-        $('video')[0].volume = percentage / 100;
+        localStorage.setItem("niputv_player_ui", parseInt(percentage));
+        //console.log(parseInt(percentage))
+
+        var nowv = percentage / 100;
+        $('video')[0].volume = nowv
         e.stopPropagation();
         e.preventDefault();
+        localStorage.setItem('niputv_player_volume', $('video')[0].volume.toString());
     }
+    //volumeControl(e)
 
     //音量悬浮显示
     var timer = null;
