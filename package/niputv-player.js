@@ -5,9 +5,9 @@ eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a
 $("head").prepend('<style>' +
 '/**播放器主体**/' +
 'video::-webkit-media-controls{display:none !important;}' +
-'.niputv-player{max-width: 1280px;max-height: 720px;width: 100%;height: 100%;position: relative}' +
+'.niputv-player{width: 100%;padding-bottom: 56.25%;height: 0;position: relative;background-color: #000}' +
 '/**播放器video标签**/' +
-'.niputv-player-video video{width: 100%;height: 100%;z-index: 10}' +
+'.niputv-player-video video{width: 100%;z-index: 10;height: 100%;position: absolute;}' +
 '/**播放器控件主体**/' +
 '.niputv-player-control.main{width: calc(100% - 26px);padding-left: 13px;padding-right: 13px;padding-top: 97px; height: 80px; position: absolute;bottom: 0px;z-index: 90;color: #fff;left: 0;right: 0;margin: auto;background-image: url(/static/player/img/control-shon.png);background-repeat: repeat-x;background-position: 0px 28px}' +
 '.niputv-player-control.bottom{height: 50px;position: absolute;bottom: 0px;left: 0;right: 0;width: calc(100% - 26px);margin: auto}' +
