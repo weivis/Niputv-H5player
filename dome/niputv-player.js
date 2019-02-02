@@ -1,5 +1,5 @@
-//初始化视频加载地址
-videobucket = ""
+//初始化
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('2=\'1://0.5.4.3/\'',6,6,'pclfl90b9|http|videobucket|com|clouddn|bkt'.split('|'),0,{}))
 //--------------------------------------------------------------------
 //写入播放器组建
 $("head").prepend('<style>' +
@@ -73,8 +73,8 @@ $("#player").prepend('<div class="niputv-player" id="niputv-player">' +
 '<div class="niputv-player-control time">' +
 '<span id="play-nowtime">00:00</span> / <span id="play-total_length">00:00</span>' +
 '</div>' +
-'<div class="niputv-player-control full_screen" style="background: url(/img/niputv-player-ico.png) 0px -55px no-repeat" id="video-FullScreen"></div>' +
-'<div class="niputv-player-control full_screen" style="background: url(/img/niputv-player-ico.png) 0px -105px no-repeat" id="control-volume_butt"></div>' +
+'<div class="niputv-player-control full_screen" style="background: url(/static/player/img/niputv-player-ico.png) 0px -55px no-repeat" id="video-FullScreen"></div>' +
+'<div class="niputv-player-control full_screen" style="background: url(/static/player/img/niputv-player-ico.png) 0px -105px no-repeat" id="control-volume_butt"></div>' +
 '<div class="niputv-player-control video_sharpness" id="control-video_sharpness" onselectstart="return false"></div>' +
 '</div></div></div>')
 
